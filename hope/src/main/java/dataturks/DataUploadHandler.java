@@ -356,6 +356,7 @@ public class DataUploadHandler {
 
                     DHits hit = new DHits(project.getId(), hitData, hitExtras);
                     String hitIdStr = AppConfig.getInstance().getdHitsDAO().createInternal(hit);
+                    System.out.println(hitIdStr);
                     isHitAdded = true;
 
                     //update the result.

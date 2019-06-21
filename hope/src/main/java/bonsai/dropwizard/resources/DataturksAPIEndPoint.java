@@ -174,6 +174,7 @@ public class DataturksAPIEndPoint {
                                             @NotNull @PathParam("projectName") String projectName) {
 
         String id = Validations.validateAPIAccessGetUidElseThrowException(key, token);
+        System.out.println(orgName);
 
         String reqLogStr = "API_getProjectDetails: project= " +  projectName  + " uid = " + id;
         LOG.info(reqLogStr);
@@ -181,9 +182,11 @@ public class DataturksAPIEndPoint {
 
         try {
             String projectId = getProjectByOrgName(orgName, projectName);
+            System.out.println(projectId);
             DReqObj reqObj = new DReqObj(id, null);
             ProjectDetails details = DataturksEndpoint.getProjectDetailsInternal(reqObj, projectId);
-            maskInternalDetails(details);
+            //maskInternalDetails(details);
+            System.out.println(details);
             return details;
         }
         catch (Exception e) {

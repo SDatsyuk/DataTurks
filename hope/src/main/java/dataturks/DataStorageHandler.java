@@ -50,13 +50,15 @@ public class DataStorageHandler {
             String storagePath = DBBasedConfigs.getConfig("dUploadStoragePath", String.class, Constants.DEFAULT_FILE_STORAGE_DIR);
             Path folderPath = Paths.get(storagePath, folderName);
             // Path newFilePath = folderPath.resolve(DUtils.createUniqueFileName(filePath));
-            Path newFilePath = folderPath.resolve(filePath);
+            Path newFilePath = folderPath.resolve(Paths.get(filePath).getFileName());
             File directory = new File(folderPath.toString());
             if (!directory.exists()) {
                 directory.mkdirs();
             }
 
+            //System.out.println(
             Path oldFilePath = Paths.get(filePath);
+//            System.out.println(oldFilePath + "\t" + newFilePath);
             Files.copy(oldFilePath, newFilePath, StandardCopyOption.REPLACE_EXISTING);
 
             //url like "/uploads/sdkjfhfh7768gjgjjh/98856jjhhn___playing.jpg"

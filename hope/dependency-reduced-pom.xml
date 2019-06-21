@@ -87,6 +87,13 @@
       <version>1.7.4</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>sun.jdk</groupId>
+      <artifactId>plugin</artifactId>
+      <version>1.6.0</version>
+      <scope>system</scope>
+      <systemPath>/usr/local/cuda-9.0/jre/lib/plugin.jar</systemPath>
+    </dependency>
   </dependencies>
   <properties>
     <jetty.version>6.1.26</jetty.version>
