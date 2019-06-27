@@ -190,6 +190,34 @@ public class DHitsDAO extends AbstractDAO<DHits> implements IDDao<DHits>{
 
     }
 
+    private List<DHits> findAllByData(String data) {
+        List<DHits> hits = list(namedQuery("bonsai.dropwizard.dao.d.DHits.findByData")
+                            .setParameter("data", data));
+        return hits;
+    }
+
+    public List<DHits> findByData(String data) {
+        Session session = sessionFactory.openSession();
+        try {
+            ManagedSessionContext.bind(session);
+            Transaction transaction = session.beginTransaction();
+            try {
+                List<DHits> results = findAllByData(data);
+                transaction.commit();
+                return results;
+            }
+            catch (Exception e) {
+                transaction.rollback();
+                throw new RuntimeException(e);
+            }
+        }
+        finally {
+            session.close();
+            ManagedSessionContext.unbind(sessionFactory);
+        }
+    }
+
+
     private long getCountForProjectForStatus(String projectId, String status) {
         Session session = sessionFactory.openSession();
         try {

@@ -211,6 +211,7 @@ public class DataUploadHandler {
                 if (node.has("annotation") &&
                         !(node.get("annotation") instanceof com.fasterxml.jackson.databind.node.NullNode)) {
                     hitResultData = mapper.writeValueAsString(node.get("annotation"));
+                    System.out.println(hitResultData);
                 }
 
                 if (node.has("extras") &&
@@ -224,11 +225,24 @@ public class DataUploadHandler {
                     dataItemStatus = node.get("metadata").get("status").textValue();
                 }
 
+
                 if (Validations.isValidDataItemForTextTask(hitData, reqObj)) {
 
-                    DHits hit = new DHits(project.getId(), hitData, hitExtras);
-                    String hitIdStr = AppConfig.getInstance().getdHitsDAO().createInternal(hit);
-                    isHitAdded = true;
+                    String hitIdStr;
+                    List<DHits> h = AppConfig.getInstance().getdHitsDAO().findByData(hitData);
+                    System.out.println(h.get(0).getId());
+                    if (h != null) {
+                        List<DHits> hits = AppConfig.getInstance().getdHitsDAO().findByData(hitData);
+                        DHits hit = hits.get(0);
+                        isHitAdded = false;
+                        hitIdStr = Long.toString(hit.getId());
+                        System.out.println("Hit ID:" + hitIdStr);
+                    }
+                    else {
+                        DHits hit = new DHits(project.getId(), hitData, hitExtras);
+                        hitIdStr = AppConfig.getInstance().getdHitsDAO().createInternal(hit);
+                        isHitAdded = true;
+                    }
 
                     //update the result.
                     if (hitResultData != null) {
@@ -356,7 +370,6 @@ public class DataUploadHandler {
 
                     DHits hit = new DHits(project.getId(), hitData, hitExtras);
                     String hitIdStr = AppConfig.getInstance().getdHitsDAO().createInternal(hit);
-                    System.out.println(hitIdStr);
                     isHitAdded = true;
 
                     //update the result.

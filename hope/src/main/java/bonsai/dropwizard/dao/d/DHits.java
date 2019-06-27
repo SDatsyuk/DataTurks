@@ -20,7 +20,9 @@ import java.util.Date;
                         + "where projectId = :projectId AND status = null ORDER BY RAND() "),
         @NamedQuery(name = "bonsai.dropwizard.dao.d.DHits.findByProjectId",
                 query = "select e from DHits e "
-                        + "where projectId = :projectId")
+                        + "where projectId = :projectId"),
+        @NamedQuery(name = "bonsai.dropwizard.dao.d.DHits.findByData",
+                query = "select e from DHits e where data = :data")
 
 })
 public class DHits implements IDdbPojo{

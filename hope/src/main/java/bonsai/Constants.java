@@ -20,7 +20,7 @@ public class Constants {
     //all files uploaded on the system.
     public static final String DEFAULT_FILE_UPLOAD_DIR = "/tmp";
     public static final int MAX_FILE_UPLOAD_SIZE = 1024*1024*10; //10 MB.
-    public static final int MAX_STRING_LENGTH_FOR_TEXT_TASK = 1000;
+    public static final int MAX_STRING_LENGTH_FOR_TEXT_TASK = 1000000;
     public static final int MAX_NUM_HITS_PER_PROJECT = 10000;
     public static final int NUM_LABELS_ALLOWED = 20000;
 
@@ -28,7 +28,7 @@ public class Constants {
     public static final String DEFAULT_FILE_DOWNLOAD_DIR = "/Users/mohan/personal/dataturks/uploads";
 
     public static final String DEFAULT_FILE_STORAGE_DIR = "/home/dataturks/bazaar/uploads";
-
+  
 
 
     //Order String Constants

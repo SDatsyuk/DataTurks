@@ -265,7 +265,7 @@
             <artifactId>plugin</artifactId>
             <version>1.6.0</version>
             <scope>system</scope>
-            <systemPath>/usr/local/cuda-9.0/jre/lib/plugin.jar</systemPath>
+            <systemPath>C:\Program Files\Java\jdk1.8.0_211\jre\lib\plugin.jar</systemPath>
         </dependency>
 
 
